@@ -5,6 +5,7 @@ on:
       - "*.js"
       - "Dockerfile"
       - "package*.json"
+      - "**/*.yaml"
     # paths-ignore:
     #   - '**/*.md'
   workflow_dispatch:
