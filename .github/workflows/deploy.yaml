@@ -1,4 +1,4 @@
-name: mcap-demo build
+name: demo-express build
 on:
   push:
     paths:
