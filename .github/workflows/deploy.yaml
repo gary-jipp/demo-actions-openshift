@@ -5,8 +5,8 @@ on:
       - "*.js"
       - "Dockerfile"
       - "package*.json"
-    paths-ignore:
-      - '**/*.md'
+    # paths-ignore:
+    #   - '**/*.md'
   workflow_dispatch:
 defaults:
   run:
@@ -55,7 +55,7 @@ jobs:
     steps:
       - name: S2I Build
         env:
-          NAMESPACE: 3a0694-tools
+          NAMESPACE: ${{ secrets.OpenShiftNamespace }}
           BUILD_NAME: demo-express
           IMAGE_NAME: demo-express
         uses: redhat-developer/openshift-actions@v1.1
