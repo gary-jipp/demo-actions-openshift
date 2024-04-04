@@ -14,4 +14,4 @@ RUN npm install
 EXPOSE 8080
 
 # Command to run the application
-CMD ["node", "server.js"]
+ENTRYPOINT ["node", "server.js"]
