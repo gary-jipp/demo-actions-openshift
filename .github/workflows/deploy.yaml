@@ -52,7 +52,7 @@ jobs:
   #         CI: "true"
   openshift-build:
     runs-on: ubuntu-latest
-    needs: [test, build]
+    needs: [test]
     steps:
       - name: OpenShift Build
         env:
