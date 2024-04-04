@@ -12,7 +12,7 @@ oc expose service/demo-express
 
 #### OC Command line: use yaml files
 ```bash
-oc login --token=<your token> --server=<your server>  # Login with our credentials
+oc login --token=<your token> --server=<your server>  # Login with credentials
 oc get imagestreams             # See what images we have registered
 oc create imagestream demo-express  # Create an IS for our build if needed
 oc apply -f 1-buildconfig.yaml  # Create the buildconfig for the image
