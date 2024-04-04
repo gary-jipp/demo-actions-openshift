@@ -2,16 +2,16 @@ name: demo-express build
 on:
   push:
     paths:
-      - "*.js"
       - "Dockerfile"
-      - "package*.json"
+      - "app/*.js"
+      - "app/package*.json"
       - "**/*.yaml"
     # paths-ignore:
     #   - '**/*.md'
   workflow_dispatch:
 defaults:
   run:
-    working-directory: .
+    working-directory: ./app
 jobs:
   test:
     runs-on: ubuntu-latest
