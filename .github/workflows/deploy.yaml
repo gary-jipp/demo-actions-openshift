@@ -2,7 +2,7 @@ name: demo-express build
 on:
   push:
     paths:
-      - "Dockerfile"
+      - "app/Dockerfile"
       - "app/*.js"
       - "app/package*.json"
       - "**/*.yaml"
