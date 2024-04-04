@@ -6,10 +6,10 @@ metadata:
   name: demo-express
 spec:
   source:
+    contextDir: app
     git:
       ref: master
       uri: https://github.com/gary-jipp/demo-openshift-express
-      contextDir: app
   strategy:
     sourceStrategy:
       from:
