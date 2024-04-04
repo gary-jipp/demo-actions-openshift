@@ -1,4 +1,4 @@
-# demo-openshify-express
+# demo-openshift-express
 
 Minimal Node Express example of Docker image that can be built locally or by GitHub Actions on OpenShift. Can be used as a starting point for an express application.  Rebuilds image and redeploys on push
 
