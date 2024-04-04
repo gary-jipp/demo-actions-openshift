@@ -1,6 +1,8 @@
 apiVersion: build.openshift.io/v1
 kind: BuildConfig
 metadata:
+  labels:
+    app: demo-express
   name: demo-express
 spec:
   source:
