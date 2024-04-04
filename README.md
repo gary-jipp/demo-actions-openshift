@@ -14,4 +14,4 @@ Minimal Node Express example of Docker image that can be built locally or by Git
 
 
 ### OpenShift
-See README in `openshift` dir
+See README in `_openshift` dir
