@@ -5,6 +5,7 @@ metadata:
 spec:
   source:
     git:
+      ref: master
       uri: https://github.com/gary-jipp/demo-openshift-express
       contextDir: app
   strategy:
@@ -17,3 +18,9 @@ spec:
     to:
       kind: ImageStreamTag
       name: demo-express:latest
+parameters:
+- description: The Display Name of this app
+  displayName: Name
+  name: NAME
+  required: true
+  value: demo-express
