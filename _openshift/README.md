@@ -14,6 +14,7 @@ oc expose service/demo-express
 ```bash
 oc login --token=<your token> --server=<your server>  # Login with credentials
 oc get imagestreams             # See what images we have registered
+oc import-image node:16-alpine --from=docker.io/library/node:16-alpine --confirm # import node
 oc create imagestream demo-express  # Create an IS for our build if needed
 oc apply -f 1-buildconfig.yaml  # Create the buildconfig for the image
 oc apply -f 2-deployment.yaml   # Create deployment
