@@ -6,6 +6,7 @@ spec:
   source:
     git:
       uri: https://github.com/gary-jipp/demo-openshift-express
+      contextDir: app
   strategy:
     sourceStrategy:
       from:
