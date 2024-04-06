@@ -24,7 +24,7 @@ oc apply -f 4-route.yaml        # Create a route to expose the service
 ## trigger an image build
 oc start-build demo-express
 
-## add redeploy trigger for when image changes
+## add redeploy trigger for when image changes (if not using pipeline)
 oc set triggers deploy/demo-express --from-image=demo-express:latest -c demo-express
 
 ```

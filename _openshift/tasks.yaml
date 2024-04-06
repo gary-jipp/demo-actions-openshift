@@ -1,0 +1,14 @@
+apiVersion: tekton.dev/v1
+kind: Task
+metadata:
+  name: tasks
+spec:
+  steps:
+    - name: step1
+      image: alpine:3.14
+      script: |
+        echo "Running Step 1"
+    - name: step2
+      image: alpine:3.14
+      script: |
+        echo "Running Step 2"

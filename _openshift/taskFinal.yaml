@@ -1,0 +1,10 @@
+apiVersion: tekton.dev/v1
+kind: Task
+metadata:
+  name: final
+spec:
+  steps:
+    - name: final-step1
+      image: alpine:3.14
+      script: |
+        echo "Finishing up!"
