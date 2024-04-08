@@ -1,0 +1,83 @@
+apiVersion: template.openshift.io/v1
+kind: Template
+metadata:
+  name: demo-openshift-express
+objects:
+
+- kind: BuildConfig
+  apiVersion: build.openshift.io/v1
+  metadata:
+    labels:
+      app: demo-express
+    name: demo-express
+  spec:
+    source:
+      contextDir: app
+      git:
+        ref: master
+        uri: https://github.com/gary-jipp/demo-openshift-express
+    strategy:
+      dockerStrategy:
+        from:
+          kind: ImageStreamTag
+          name: node:16-alpine
+    output:
+      to:
+        kind: ImageStreamTag
+        name: demo-express:latest
+
+- kind: Deployment
+  apiVersion: apps/v1
+  metadata:
+    annotations:
+      image.openshift.io/triggers: '[{"from":{"kind":"ImageStreamTag","name":"demo-express:latest"},"fieldPath":"spec.template.spec.containers[?(@.name==\"demo-express\")].image"}]'
+    name: demo-express
+    # namespace: crt-redhat2304-dev
+  spec:
+    replicas: 2
+    selector:
+      matchLabels:
+        deployment: demo-express
+    template:
+      metadata:
+        labels:
+          deployment: demo-express
+      spec:
+        containers:
+          - name: demo-express
+            image: 'demo-express:latest'
+            ports:
+              - containerPort: 8080
+                protocol: TCP
+        restartPolicy: Always
+
+- kind: Service
+  apiVersion: v1
+  metadata:
+    name: demo-express
+    labels:
+      app: demo-express
+  spec:
+    ipFamilies:
+      - IPv4
+    ports:
+      - name: 8080-tcp
+        protocol: TCP
+        port: 8080
+        targetPort: 8080
+    type: ClusterIP
+    selector:
+      deployment: demo-express
+
+- kind: Route
+  apiVersion: route.openshift.io/v1
+  metadata:
+    name: demo-express
+    labels: {}
+  spec:
+    to:
+      kind: Service
+      name: demo-express
+    tls: null
+    port:
+      targetPort: 8080
