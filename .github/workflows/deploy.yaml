@@ -1,6 +1,7 @@
 name: demo-express build
 on:
   push:
+    branches: [ dev ]
     paths:
       - "app/Dockerfile"
       - "app/*.js"
