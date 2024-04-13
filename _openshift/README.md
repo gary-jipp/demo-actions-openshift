@@ -10,7 +10,7 @@ oc new-app demo-express:latest
 oc expose service/demo-express
 ```
 
-#### OC Command line: use yaml files
+#### OC Command line: using individual yaml files
 ```bash
 oc login --token=<your token> --server=<your server>  # Login with credentials
 oc get imagestreams             # See what images we have registered
@@ -31,7 +31,14 @@ oc process -f demo-express.yaml  |  oc apply -f -
 oc start-build demo-express
 ```
 
-```bash
 ## add redeploy trigger for when image changes
+```bash
 oc set triggers deploy/demo-express --from-image=demo-express:latest -c demo-express
+```
+
+## Can Add persistent storage volumne to deployment
+```bash
+oc set volumes deployment/demo-express --add --name demo-volume --type pvc --claim-name demo-storage --mount-path /mnt/demo
+
+oc set volumes deployment/demo-express --add --name demo-volume -t pvc --claim-name demo-storage -m /mnt/demo
 ```
