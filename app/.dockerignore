@@ -1,6 +1,3 @@
 README.md
-openshift
-.github
-.gitignore
+Dockerfile
 .dockerignore
-.Dockerfile
