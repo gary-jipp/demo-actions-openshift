@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 env:
-  IMAGE_NAME: demo_express
+  APP_NAME: demo_express
 
 # defaults:
   # run:
@@ -22,5 +22,3 @@ jobs:
       - name: Log into registry
         run: |
           echo "${{ secrets.OPENSHIFT_TOKEN }}" | docker login -u unused --password-stdin $REGISTRY
-
-

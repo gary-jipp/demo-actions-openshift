@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
 
 env:
-  IMAGE_NAME: demo_express
+  APP_NAME: demo_express
   # REGISTRY: image-registry.apps.silver.devops.gov.bc.ca/bde4f5-tools
   REGISTRY: ${{ secrets.OPENSHIFT_REGISTRY }}/${{ secrets.OPENSHIFT_NAMESPACE }}
 
@@ -35,13 +35,13 @@ jobs:
           # push: true
           context: ./app
           tags: |
-            ${{ env.IMAGE_NAME }}:latest
+            ${{ env.APP_NAME }}:latest
 
       - name: Login to Registry
         run:  echo "${{ secrets.OPENSHIFT_TOKEN }}" | docker login -u unused --password-stdin $REGISTRY
 
       - name: Tag Image
-        run:  docker tag $IMAGE_NAME:latest $REGISTRY/demo-express:latest
+        run:  docker tag $APP_NAME:latest $REGISTRY/demo-express:latest
 
       - name: Push Image
         run:  docker push $REGISTRY/demo-express:latest

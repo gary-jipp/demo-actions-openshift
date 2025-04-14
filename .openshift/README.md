@@ -43,17 +43,26 @@ oc set triggers deploy/demo-express --from-image=demo-express:latest -c demo-exp
 ```
 
 ## Generate / fetch OpenShift token for GitHub actions.  Allows GitHub Action to push the image
-```bash
- oc get secrets
 
-# create service account (if not already there)
-oc create serviceaccount github-action-sa
-oc policy add-role-to-user edit -z github-action-sa -n <image ns>
+### Check if Service account exists
+ ```
+ oc get sa github-action-sa
+ ```
 
-# Find token secret for service account
- oc get secrets
-
-# Get token as base64 to save as GitHub Actions Secret
-oc get secret github-action-sa-token-xxxx -o jsonpath='{.data.token}' | base64 --decode
-
+### Create service account (if not already there)
 ```
+oc create serviceaccount -n <tools-ns> github-action-sa
+oc policy add-role-to-user edit -z github-action-sa -n <tools-ns>
+```
+
+### Create a long-lived token for this sa
+```
+oc apply -f sa_token.yaml
+```
+
+### Fetch the long-lived token for the sa
+```
+oc get secret github-action-sa-token -n <tools-ns> -o jsonpath='{.data.token}' | base64 -d
+```
+
+###  Test token in https://jwt.io to confirm no expiry
