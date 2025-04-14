@@ -42,7 +42,8 @@ Confirm Action runs without errors and logs into your OpenShift
 oc set triggers deploy/demo-express --from-image=demo-express:latest -c demo-express
 ```
 
-## Generate / fetch OpenShift token for GitHub actions.  Allows GitHub Action to push the image
+## Generate / fetch OpenShift token for GitHub actions.
+This Allows GitHub Action to push the image to the OpenShift image registry
 
 ### Check if Service account exists
  ```
